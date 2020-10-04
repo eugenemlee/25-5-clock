@@ -1,3 +1,7 @@
+As a learning exercise, I've reimplemented in TypeScript a 25+5 clock that was previously made for a [FreeCodeCamp project](https://codepen.io/abundantsalmon/pen/zYqVMYd). 
+
+Check it out deployed here: https://abundantsalmon.github.io/25-5-clock/
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
