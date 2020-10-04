@@ -7,6 +7,7 @@ import Timer from 'easytimer.js';
 let useReducer = React.useReducer;
 let useEffect = React.useEffect;
 let useRef = React.useRef;
+let useState = React.useState;
 
 const BREAKMINIMUM = 1;
 const BREAKMAXIMUM = 60;
@@ -32,7 +33,7 @@ type TimerState = {
 }
 
 function App() {
-  const timer = new Timer();
+  const [timer, setTimer] = useState(new Timer());
   const [timerState, dispatchTimerState] = useReducer(reducerTimerState, initialTimerState);
   const audioRef = useRef<HTMLAudioElement>(null);
 
