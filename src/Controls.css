@@ -1,0 +1,79 @@
+#session-label {
+  grid-area: session;
+  margin: 0px;
+  padding: 0px;
+}
+
+#break-label {
+  grid-area: break;
+  margin: 0px;
+  padding: 0px;
+}
+
+#break-length {
+  grid-area: breakLength;
+  margin: 0px;
+  padding: 0px;
+}
+
+#session-length {
+  grid-area: sessionLength;
+  margin: 0px;
+  padding: 0px;
+}
+#start_stop {
+  grid-area: playPause;
+  margin: 0px;
+  padding: 0px;
+}
+#reset {
+  grid-area: reset;
+  margin: 0px;
+  padding: 0px;
+}
+#break-decrement {
+  grid-area: breakDecrement;
+  margin: 0px;
+  padding: 0px;
+}
+#break-increment {
+  grid-area: breakIncrement;
+  margin: 0px;
+  padding: 0px;
+}
+#session-decrement {
+  grid-area: sessionDecrement;
+  margin: 0px;
+  padding: 0px;
+}
+#session-increment {
+  grid-area: sessionIncrement;
+  margin: 0px;
+  padding: 0px;
+}
+
+#controls {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto;
+  grid-template-rows: auto auto auto auto;
+  gap: 0px 0px;
+  grid-template-areas:
+    "session session . . break break"
+    "sessionIncrement sessionIncrement centre centre breakIncrement breakIncrement"
+    "sessionLength sessionLength centre centre breakLength breakLength"
+    "sessionDecrement sessionDecrement centre centre breakDecrement breakDecrement";
+  justify-content: space-evenly;
+  text-align: center;
+}
+
+.center {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-template-rows: 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "playPause playPause playPause"
+    "reset reset reset";
+  grid-area: centre;
+  align-items: center;
+}

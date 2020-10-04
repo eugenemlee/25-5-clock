@@ -1,6 +1,7 @@
 import React from 'react';
 import Timer from 'easytimer.js';
 import {Button} from './Buttons';
+import './Controls.css';
 
 let useEffect = React.useEffect;
 

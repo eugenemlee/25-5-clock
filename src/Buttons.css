@@ -1,0 +1,7 @@
+.button {
+  font-size: 50px;
+}
+
+.button:hover {
+  text-shadow: 3px 3px 2px #c1c1c1;
+}
