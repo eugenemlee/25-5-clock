@@ -1,11 +1,11 @@
 import React from 'react';
 import './Display.css';
 
-type displayProps = {
+type DisplayProps = {
   timerState: TimerState;
 };
 
-export function Display({ timerState }: displayProps): JSX.Element {
+export function Display({ timerState }: DisplayProps): JSX.Element {
   return (
     <div id="display-container" className="card my-3">
       <div id="timer-label">

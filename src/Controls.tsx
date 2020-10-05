@@ -3,7 +3,7 @@ import Timer from 'easytimer.js';
 import { Button } from './Buttons';
 import './Controls.css';
 
-type controlProps = {
+type ControlsProps = {
   timerState: TimerState;
   dispatchTimerState: React.Dispatch<ACTIONTYPE>;
   timer: Timer;
@@ -15,7 +15,7 @@ export function Controls({
   dispatchTimerState,
   timer,
   audioRef,
-}: controlProps): JSX.Element {
+}: ControlsProps): JSX.Element {
   useEffect(() => {
     const changeSegement = () => {
       if (audioRef.current !== null) {
