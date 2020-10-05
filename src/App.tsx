@@ -1,14 +1,10 @@
-import React from 'react';
+import React, { useReducer, useRef, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 
 import Timer from 'easytimer.js';
 import { Display } from './Display';
 import { Controls } from './Controls';
-
-let useReducer = React.useReducer;
-let useRef = React.useRef;
-let useState = React.useState;
 
 const BREAKMINIMUM = 1;
 const BREAKMAXIMUM = 60;
