@@ -58,10 +58,10 @@
   grid-template-rows: auto auto auto auto;
   gap: 0px 0px;
   grid-template-areas:
-    "session session . . break break"
-    "sessionIncrement sessionIncrement centre centre breakIncrement breakIncrement"
-    "sessionLength sessionLength centre centre breakLength breakLength"
-    "sessionDecrement sessionDecrement centre centre breakDecrement breakDecrement";
+    'session session . . break break'
+    'sessionIncrement sessionIncrement centre centre breakIncrement breakIncrement'
+    'sessionLength sessionLength centre centre breakLength breakLength'
+    'sessionDecrement sessionDecrement centre centre breakDecrement breakDecrement';
   justify-content: space-evenly;
   text-align: center;
 }
@@ -72,8 +72,8 @@
   grid-template-rows: 1fr 1fr;
   gap: 0px 0px;
   grid-template-areas:
-    "playPause playPause playPause"
-    "reset reset reset";
+    'playPause playPause playPause'
+    'reset reset reset';
   grid-area: centre;
   align-items: center;
 }
