@@ -1,4 +1,4 @@
-import React, { useReducer, useRef, useState } from 'react';
+import React, { useReducer, useRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 
@@ -11,17 +11,17 @@ const BREAKMAXIMUM = 60;
 const SESSIONMINIMUM = 1;
 const SESSIONMAXIMUM = 60;
 
-const initialTimerState = {
+const initialTimerState: TimerState = {
   breakLength: 5,
   sessionLength: 25,
   currentTime: '25:00',
   started: false,
   paused: false,
   label: 'SESSION',
+  timer: new Timer(),
 };
 
 const App: React.VFC = () => {
-  const [timer, setTimer] = useState(new Timer());
   const [timerState, dispatchTimerState] = useReducer(
     reducerTimerState,
     initialTimerState
@@ -34,7 +34,6 @@ const App: React.VFC = () => {
       <Controls
         timerState={timerState}
         dispatchTimerState={dispatchTimerState}
-        timer={timer}
         audioRef={audioRef}
       />
       <audio
@@ -96,7 +95,7 @@ function reducerTimerState(state: TimerState, action: ACTIONTYPE): TimerState {
     case 'setCurrentTime':
       return {
         ...state,
-        currentTime: action.timer
+        currentTime: state.timer
           .getTimeValues()
           .toString(['minutes', 'seconds']),
       };
@@ -107,17 +106,14 @@ function reducerTimerState(state: TimerState, action: ACTIONTYPE): TimerState {
     case 'setDefault':
       return { ...initialTimerState };
     case 'timerStart':
-      action.timer.start({
+      state.timer.start({
         countdown: true,
         startValues: {
           minutes:
             state.label === 'SESSION' ? state.sessionLength : state.breakLength,
         },
         callback: () => {
-          action.dispatchTimerState({
-            type: 'setCurrentTime',
-            timer: action.timer,
-          });
+          action.dispatchTimerState({ type: 'setCurrentTime' });
         },
       });
       return state;

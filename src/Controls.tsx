@@ -1,19 +1,17 @@
 import React, { useEffect, useCallback } from 'react';
-import Timer from 'easytimer.js';
+import type Timer from 'easytimer.js';
 import { Button } from './Buttons';
 import './Controls.css';
 
 type ControlsProps = {
   timerState: TimerState;
   dispatchTimerState: React.Dispatch<ACTIONTYPE>;
-  timer: Timer;
   audioRef: React.RefObject<HTMLAudioElement>;
 };
 
 export const Controls: React.VFC<ControlsProps> = ({
   timerState,
   dispatchTimerState,
-  timer,
   audioRef,
 }) => {
   const timerStart = useCallback(
@@ -21,7 +19,6 @@ export const Controls: React.VFC<ControlsProps> = ({
       console.log('timerstart');
       dispatchTimerState({
         type: 'timerStart',
-        timer: timer,
         dispatchTimerState: dispatchTimerState,
       });
       console.log('timerstart1a');
@@ -40,15 +37,15 @@ export const Controls: React.VFC<ControlsProps> = ({
       if (audioRef.current !== null) {
         audioRef.current.play(); //try to overcome ref could be null compile error, not sure if this is the best approach, change when understanding is better. Maybe have this check at the start?
       }
-      changeLabel(timer);
+      changeLabel(timerState.timer);
     };
 
-    timer.addEventListener('targetAchieved', changeSegement);
+    timerState.timer.addEventListener('targetAchieved', changeSegement);
     // returned function will be called on component unmount
     return () => {
-      timer.removeEventListener('targetAchieved', changeSegement);
+      timerState.timer.removeEventListener('targetAchieved', changeSegement);
     };
-  }, [audioRef, dispatchTimerState, timer, timerStart]);
+  }, [audioRef, dispatchTimerState, timerStart, timerState.timer]);
 
   const startPauseCommand = () => {
     console.log(
@@ -59,22 +56,22 @@ export const Controls: React.VFC<ControlsProps> = ({
     );
     if (timerState.started === false) {
       console.log('start');
-      timerStart(timer);
+      timerStart(timerState.timer);
       dispatchTimerState({ type: 'setStarted', state: true });
       console.log('start1');
     } else if (timerState.started === true && timerState.paused === false) {
       console.log('pause');
-      timer.pause();
+      timerState.timer.pause();
       dispatchTimerState({ type: 'setPaused', state: true });
     } else if (timerState.started === true && timerState.paused === true) {
       console.log('restart');
-      timer.start();
+      timerState.timer.start();
       dispatchTimerState({ type: 'setPaused', state: false });
     }
   };
 
   const resetCommand = () => {
-    timer.stop();
+    timerState.timer.stop();
     if (audioRef.current !== null) {
       //is audio doesn't load then it doesn't play
       audioRef.current.pause();

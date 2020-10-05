@@ -5,6 +5,7 @@ type TimerState = {
   started: boolean;
   paused: boolean;
   label: string;
+  timer: import('easytimer.js').Timer;
 };
 
 type ACTIONTYPE =
@@ -12,13 +13,12 @@ type ACTIONTYPE =
   | { type: 'breakIncrement' }
   | { type: 'sessionDecrement' }
   | { type: 'sessionIncrement' }
-  | { type: 'setCurrentTime'; timer: Timer }
+  | { type: 'setCurrentTime' }
   | { type: 'setStarted'; state: boolean }
   | { type: 'setPaused'; state: boolean }
   | { type: 'setDefault' }
   | {
       type: 'timerStart';
-      timer: Timer;
       dispatchTimerState: React.Dispatch<ACTIONTYPE>;
     }
   | { type: 'changeLabel' };
