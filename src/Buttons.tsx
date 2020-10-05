@@ -7,10 +7,10 @@ type ButtonProps = {
   onClick(event: React.MouseEvent<HTMLElement>): void;
 };
 
-export function Button({ id, label, onClick }: ButtonProps): JSX.Element {
+export const Button: React.VFC<ButtonProps> = ({ id, label, onClick }) => {
   return (
     <div id={id} className={'button'} onClick={onClick}>
       {label}
     </div>
   );
-}
+};

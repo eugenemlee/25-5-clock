@@ -5,7 +5,7 @@ type DisplayProps = {
   timerState: TimerState;
 };
 
-export function Display({ timerState }: DisplayProps): JSX.Element {
+export const Display: React.VFC<DisplayProps> = ({ timerState }) => {
   return (
     <div id="display-container" className="card my-3">
       <div id="timer-label">
@@ -14,4 +14,4 @@ export function Display({ timerState }: DisplayProps): JSX.Element {
       <div id="time-left">{timerState.currentTime}</div>
     </div>
   );
-}
+};

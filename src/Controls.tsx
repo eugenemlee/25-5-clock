@@ -10,12 +10,12 @@ type ControlsProps = {
   audioRef: React.RefObject<HTMLAudioElement>;
 };
 
-export function Controls({
+export const Controls: React.VFC<ControlsProps> = ({
   timerState,
   dispatchTimerState,
   timer,
   audioRef,
-}: ControlsProps): JSX.Element {
+}) => {
   useEffect(() => {
     const changeSegement = () => {
       if (audioRef.current !== null) {
@@ -132,4 +132,4 @@ export function Controls({
       />
     </div>
   );
-}
+};

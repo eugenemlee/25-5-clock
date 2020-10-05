@@ -20,7 +20,7 @@ const initialTimerState = {
   label: 'SESSION',
 };
 
-function App() {
+const App: React.VFC = () => {
   const [timer, setTimer] = useState(new Timer());
   const [timerState, dispatchTimerState] = useReducer(
     reducerTimerState,
@@ -45,7 +45,7 @@ function App() {
       />
     </div>
   );
-}
+};
 
 function minutesToClock(minutes: number) {
   //used to format the clock displays 00:00
