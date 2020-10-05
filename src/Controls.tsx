@@ -13,21 +13,21 @@ type controlProps = {
 };
 
 export function Controls({ timerState, dispatchTimerState, timer, audioRef }: controlProps): JSX.Element {
-    useEffect(() => {
-
+    const initaliseEventListener = () => {
+        console.log("useEffect");
         const changeSegement = () => {
             if (audioRef.current !== null) {
                 audioRef.current.play(); //try to overcome ref could be null compile error, not sure if this is the best approach, change when understanding is better. Maybe have this check at the start?
             }
             changeLabel(timer);
         }
-
         timer.addEventListener('targetAchieved', changeSegement);
-        // returned function will be called on component unmount 
         return () => {
             timer.removeEventListener('targetAchieved', changeSegement);
         }
-    }, []);
+    }
+
+    useEffect(initaliseEventListener, []);
 
     const startPauseCommand = () => {
         console.log("startpausebutton, timerState.started: " + timerState.started + ", timerState.paused: " + timerState.paused);

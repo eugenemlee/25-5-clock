@@ -3,8 +3,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 
 import Timer from 'easytimer.js';
-import {Display} from './Display';
-import {Controls} from './Controls';
+import { Display } from './Display';
+import { Controls } from './Controls';
 
 let useReducer = React.useReducer;
 let useRef = React.useRef;
@@ -25,7 +25,7 @@ const initialTimerState = {
 };
 
 function App() {
-  const [timer, setTimer] = useState(new Timer());
+  const [timer] = useState(new Timer());
   const [timerState, dispatchTimerState] = useReducer(reducerTimerState, initialTimerState);
   const audioRef = useRef<HTMLAudioElement>(null);
 
