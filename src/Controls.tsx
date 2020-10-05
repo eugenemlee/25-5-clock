@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import Timer from 'easytimer.js';
 import { Button } from './Buttons';
 import './Controls.css';
@@ -16,7 +16,26 @@ export const Controls: React.VFC<ControlsProps> = ({
   timer,
   audioRef,
 }) => {
+  const timerStart = useCallback(
+    (timer: Timer) => {
+      console.log('timerstart');
+      dispatchTimerState({
+        type: 'timerStart',
+        timer: timer,
+        dispatchTimerState: dispatchTimerState,
+      });
+      console.log('timerstart1a');
+    },
+    [dispatchTimerState]
+  );
+
   useEffect(() => {
+    const changeLabel = (timer: Timer) => {
+      console.log('timer change');
+      dispatchTimerState({ type: 'changeLabel' });
+      timerStart(timer);
+    };
+
     const changeSegement = () => {
       if (audioRef.current !== null) {
         audioRef.current.play(); //try to overcome ref could be null compile error, not sure if this is the best approach, change when understanding is better. Maybe have this check at the start?
@@ -29,7 +48,7 @@ export const Controls: React.VFC<ControlsProps> = ({
     return () => {
       timer.removeEventListener('targetAchieved', changeSegement);
     };
-  }, []);
+  }, [audioRef, dispatchTimerState, timer, timerStart]);
 
   const startPauseCommand = () => {
     console.log(
@@ -52,22 +71,6 @@ export const Controls: React.VFC<ControlsProps> = ({
       timer.start();
       dispatchTimerState({ type: 'setPaused', state: false });
     }
-  };
-
-  const timerStart = (timer: Timer) => {
-    console.log('timerstart');
-    dispatchTimerState({
-      type: 'timerStart',
-      timer: timer,
-      dispatchTimerState: dispatchTimerState,
-    });
-    console.log('timerstart1a');
-  };
-
-  const changeLabel = (timer: Timer) => {
-    console.log('timer change');
-    dispatchTimerState({ type: 'changeLabel' });
-    timerStart(timer);
   };
 
   const resetCommand = () => {
