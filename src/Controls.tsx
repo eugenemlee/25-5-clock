@@ -1,5 +1,4 @@
 import React, { useEffect, useCallback } from 'react';
-import type Timer from 'easytimer.js';
 import { Button } from './Buttons';
 import './Controls.css';
 
@@ -14,30 +13,27 @@ export const Controls: React.VFC<ControlsProps> = ({
   dispatchTimerState,
   audioRef,
 }) => {
-  const timerStart = useCallback(
-    (timer: Timer) => {
-      console.log('timerstart');
-      dispatchTimerState({
-        type: 'timerStart',
-        dispatchTimerState: dispatchTimerState,
-      });
-      console.log('timerstart1a');
-    },
-    [dispatchTimerState]
-  );
+  const timerStart = useCallback(() => {
+    console.log('timerstart');
+    dispatchTimerState({
+      type: 'timerStart',
+      dispatchTimerState: dispatchTimerState,
+    });
+    console.log('timerstart1a');
+  }, [dispatchTimerState]);
 
   useEffect(() => {
-    const changeLabel = (timer: Timer) => {
+    const changeLabel = () => {
       console.log('timer change');
       dispatchTimerState({ type: 'changeLabel' });
-      timerStart(timer);
+      timerStart();
     };
 
     const changeSegement = () => {
       if (audioRef.current !== null) {
         audioRef.current.play(); //try to overcome ref could be null compile error, not sure if this is the best approach, change when understanding is better. Maybe have this check at the start?
       }
-      changeLabel(timerState.timer);
+      changeLabel();
     };
 
     timerState.timer.addEventListener('targetAchieved', changeSegement);
@@ -56,7 +52,7 @@ export const Controls: React.VFC<ControlsProps> = ({
     );
     if (timerState.started === false) {
       console.log('start');
-      timerStart(timerState.timer);
+      timerStart();
       dispatchTimerState({ type: 'setStarted', state: true });
       console.log('start1');
     } else if (timerState.started === true && timerState.paused === false) {
