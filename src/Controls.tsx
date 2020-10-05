@@ -1,6 +1,6 @@
 import React from 'react';
 import Timer from 'easytimer.js';
-import {Button} from './Buttons';
+import { Button } from './Buttons';
 import './Controls.css';
 
 let useEffect = React.useEffect;
@@ -75,13 +75,13 @@ export function Controls({ timerState, dispatchTimerState, timer, audioRef }: co
             <div id="session-label">Session</div>
             <div id="session-length" className="length">{timerState.sessionLength}</div>
             <div className="center">
-                <Button id="start_stop" label={!timerState.started ? '<i class="fas fa-play-circle"></i>' : timerState.paused ? '<i class="fas fa-play-circle"></i>' : '<i class="fas fa-pause-circle"></i>'} onClick={startPauseCommand} />
-                <Button id="reset" label='<i class="fas fa-undo"></i>' onClick={resetCommand} />
+                <Button id="start_stop" label={!timerState.started ? <i className="fas fa-play-circle"></i> : timerState.paused ? <i className="fas fa-play-circle"></i> : <i className="fas fa-pause-circle"></i>} onClick={startPauseCommand} />
+                <Button id="reset" label={<i className="fas fa-undo"></i>} onClick={resetCommand} />
             </div>
-            <Button id="break-decrement" label='<i class="fas fa-chevron-circle-down"></i>' onClick={() => dispatchTimerState({ type: "breakDecrement" })} />
-            <Button id="break-increment" label='<i class="fas fa-chevron-circle-up"></i>' onClick={() => dispatchTimerState({ type: "breakIncrement" })} />
-            <Button id="session-decrement" label='<i class="fas fa-chevron-circle-down"></i>' onClick={() => dispatchTimerState({ type: "sessionDecrement" })} />
-            <Button id="session-increment" label='<i class="fas fa-chevron-circle-up"></i>' onClick={() => dispatchTimerState({ type: "sessionIncrement" })} />
+            <Button id="break-decrement" label={<i className="fas fa-chevron-circle-down"></i>} onClick={() => dispatchTimerState({ type: "breakDecrement" })} />
+            <Button id="break-increment" label={<i className="fas fa-chevron-circle-up"></i>} onClick={() => dispatchTimerState({ type: "breakIncrement" })} />
+            <Button id="session-decrement" label={<i className="fas fa-chevron-circle-down"></i>} onClick={() => dispatchTimerState({ type: "sessionDecrement" })} />
+            <Button id="session-increment" label={<i className="fas fa-chevron-circle-up"></i>} onClick={() => dispatchTimerState({ type: "sessionIncrement" })} />
         </div>
     );
 }
